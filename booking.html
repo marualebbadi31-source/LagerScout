@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LagerScout — Zeitfenster buchen</title>
+  <meta name="description" content="Zeitfenster-Reservierung (Demo) für Speditionen. Kalender mit Belegung nach Tag, Uhrzeit und Rampe." />
+  <meta name="theme-color" content="#d80000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/logo.png" />
+  <style>
+    #toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);padding:12px 14px;border-radius:999px;
+      background:#111;color:#fff;font-weight:900;box-shadow:0 18px 40px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s ease}
+    #toast.show{opacity:1}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/logo.png" alt="LagerScout Logo" />
+        <span class="brand__name">LagerScout</span>
+      </a>
+
+      <nav class="nav" aria-label="Hauptnavigation">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+          <span class="nav__toggleBars" aria-hidden="true"></span>
+          <span class="sr">Menü</span>
+        </button>
+
+        <div id="navMenu" class="nav__menu">
+          <a class="nav__link" href="index.html" data-i18n="nav_home">Start</a>
+          <a class="nav__link" href="booking.html" data-i18n="nav_booking">Zeitfenster buchen</a>
+          <a class="nav__link" href="index.html#kontakt" data-i18n="nav_contact">Kontakt</a>
+
+          <div class="lang" aria-label="Sprache">
+            <button id="langDe" class="pillbtn" type="button" aria-pressed="true">DE</button>
+            <button id="langEn" class="pillbtn" type="button" aria-pressed="false">EN</button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h1 data-i18n-b="page_title">Zeitfenster buchen</h1>
+          <p class="muted" data-i18n-b="page_desc">Speditionen/Disponenten können hier ein Zeitfenster reservieren. Demo-Kalender mit generierten Firmen.</p>
+        </div>
+
+        <div class="split">
+          <form class="card form" id="bookForm">
+            <h2 style="margin:0 0 10px" data-i18n-b="form_title">Neue Reservierung</h2>
+
+            <div class="note" style="margin-bottom:12px">
+              <div data-i18n-b-html="price_hint">Ein Zeitfenster kostet ca. <strong>100 €</strong>.</div>
+              <div style="margin-top:8px"><strong data-i18n-b="policy_title">Wichtig: Zeitfenster-Regel</strong></div>
+              <div class="muted" style="margin-top:6px" data-i18n-b-html="policy_html">
+                Bitte pünktlich erscheinen. Wenn Sie <strong>nicht im gebuchten Zeitfenster</strong> ankommen bzw. abfertigbar sind, besteht <strong>keine Berechtigung zum Entladen</strong>.
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label for="company" data-i18n-b="company">Spedition / Firma</label>
+              <input id="company" name="company" type="text" placeholder="z.B. MusterSpedition GmbH" required />
+            </div>
+
+            <div class="form__row">
+              <label for="contact" data-i18n-b="contact">Kontakt (Name)</label>
+              <input id="contact" name="contact" type="text" placeholder="z.B. Max Mustermann" required />
+            </div>
+
+            <div class="form__row">
+              <label for="plate" data-i18n-b="plate">Kennzeichen</label>
+              <input id="plate" name="plate" type="text" placeholder="z.B. B-AB 1234" required />
+            </div>
+
+            <div class="form__row">
+              <label for="cargo" data-i18n-b="cargo">Bereich</label>
+              <select id="cargo" name="cargo"></select>
+            </div>
+
+            <div class="form__row">
+              <label for="dock" data-i18n-b="dock">Rampe</label>
+              <select id="dock" name="dock"></select>
+            </div>
+
+            <div class="form__row">
+              <label for="day" data-i18n-b="day">Tag</label>
+              <select id="day" name="day"></select>
+            </div>
+
+            <div class="form__row">
+              <label for="time" data-i18n-b="time">Uhrzeit</label>
+              <select id="time" name="time"></select>
+            </div>
+
+            <div class="form__row">
+              <label for="duration" data-i18n-b="duration">Dauer</label>
+              <select id="duration" name="duration"></select>
+            </div>
+
+            <div class="form__row">
+              <label for="notes" data-i18n-b="notes">Notiz (optional)</label>
+              <textarea id="notes" name="notes" rows="3" placeholder=""></textarea>
+            </div>
+
+            <button class="btn btn--primary" type="submit" data-i18n-b="add">Reservieren</button>
+
+            <div class="kpis">
+              <div class="kpi"><div class="kpi__t" data-i18n-b="show_mine">Nur meine</div><div class="kpi__v" id="kpiMine">0</div></div>
+              <div class="kpi"><div class="kpi__t">Preis</div><div class="kpi__v" id="kpiPrice">€100</div></div>
+              <div class="kpi"><div class="kpi__t">Docks</div><div class="kpi__v" id="kpiDocks">6</div></div>
+            </div>
+          </form>
+
+          <div class="card calendar">
+            <div class="cal__top">
+              <div>
+                <strong data-i18n-b="cal_title">Kalender</strong><br>
+                <span class="muted" id="weekLabel">Woche</span>
+              </div>
+
+              <div class="cal__controls">
+                <button class="btn btn--ghost btn--small" type="button" id="prevWeek" data-i18n-b="prev">← Vorherige</button>
+                <button class="btn btn--ghost btn--small" type="button" id="nextWeek" data-i18n-b="next">Nächste →</button>
+                <select id="filterSel" aria-label="Filter">
+                  <option value="all" data-i18n-b="show_all">Alle</option>
+                  <option value="mine" data-i18n-b="show_mine">Nur meine</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="muted" style="font-size:13px;margin-bottom:10px">
+              Tipp: Andere Firmen sind <strong>generiert</strong> (Demo). Deine Reservierungen werden lokal gespeichert.
+            </div>
+
+            <table class="table" aria-label="Kalender Wochenübersicht">
+              <thead>
+                <tr id="calHead"></tr>
+              </thead>
+              <tbody id="calBody"></tbody>
+            </table>
+
+            <div class="hr"></div>
+            <a class="btn btn--ghost btn--small" href="index.html">← Zurück</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <img src="assets/logo.png" alt="" class="footer__logo" />
+          <div>
+            <strong>LagerScout</strong><br/>
+            <span class="muted" style="font-size:13px">© <span id="year"></span> <span data-i18n="footer_rights">Alle Rechte vorbehalten.</span></span>
+          </div>
+        </div>
+        <div class="footer__links">
+          <a href="index.html" data-i18n="nav_home">Start</a>
+          <a href="index.html#kontakt" data-i18n="nav_contact">Kontakt</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="common.js"></script>
+  <script src="booking.js"></script>
+</body>
+</html>

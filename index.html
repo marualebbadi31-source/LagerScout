@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LagerScout — Lager & Zeitfenster</title>
+  <meta name="description" content="LagerScout: Lager für Frische, Trockene Ware, Tiefkühl sowie Obst & Gemüse. Zeitfenster-Reservierung für Speditionen." />
+  <meta name="theme-color" content="#d80000" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/logo.png" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/logo.png" alt="LagerScout Logo" />
+        <span class="brand__name">LagerScout</span>
+      </a>
+
+      <nav class="nav" aria-label="Hauptnavigation">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+          <span class="nav__toggleBars" aria-hidden="true"></span>
+          <span class="sr">Menü</span>
+        </button>
+
+        <div id="navMenu" class="nav__menu">
+          <a class="nav__link" href="index.html" data-i18n="nav_home">Start</a>
+          <a class="nav__link" href="booking.html" data-i18n="nav_booking">Zeitfenster buchen</a>
+          <a class="nav__link" href="#kontakt" data-i18n="nav_contact">Kontakt</a>
+          <a class="btn btn--small btn--primary" href="booking.html" data-i18n="cta_demo">Anfrage</a>
+
+          <div class="lang" aria-label="Sprache">
+            <button id="langDe" class="pillbtn" type="button" aria-pressed="true">DE</button>
+            <button id="langEn" class="pillbtn" type="button" aria-pressed="false">EN</button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <div>
+          <div class="badge">
+            <span class="badge__dot" aria-hidden="true"></span>
+            <span>Warehouse + Slots • DE/EN</span>
+          </div>
+
+          <div class="section__head" style="margin-top:14px">
+            <h1>Wir sind <span style="color:var(--red)">LagerScout</span> — Lager & Zeitfenster für Speditionen.</h1>
+          </div>
+
+          <p class="lead">
+            Wir sind ein Lager mit Bereichen für <strong>Frische</strong>, <strong>Trockene Ware</strong>,
+            <strong>Tiefkühl</strong> sowie <strong>Obst &amp; Gemüse</strong>.
+            Disponenten von Speditionen können über unseren Kalender ein <strong>Zeitfenster</strong> buchen und sehen,
+            wer wann an welcher Rampe eingeplant ist.
+          </p>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn btn--primary" href="booking.html">Zeitfenster buchen</a>
+            <a class="btn btn--ghost" href="#leistungen">Was wir machen</a>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="note">
+            <strong>Hinweis:</strong> Der Kalender im Demo ist „live“ im Browser und speichert deine Reservierungen lokal (LocalStorage).
+            Für echte Mehrbenutzer-Buchungen brauchst du später ein kleines Backend (kann ich dir auch bauen).
+          </div>
+        </div>
+
+        <div class="card" style="padding:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <strong>Bereiche im Lager</strong>
+            <span class="tag tag--ok">24/7 Übersicht</span>
+          </div>
+          <div class="hr"></div>
+          <div class="grid3" style="grid-template-columns:1fr;gap:10px">
+            <div class="feature">
+              <div class="feature__icon">🥬</div>
+              <h3>Frische & Obst/Gemüse</h3>
+              <p>Temperaturgeführte Prozesse für empfindliche Ware.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">📦</div>
+              <h3>Trockene Ware</h3>
+              <p>Standardlagerung, schnelle Kommissionierung.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">🧊</div>
+              <h3>Tiefkühl</h3>
+              <p>Frostbereiche für TK-Ware und sichere Abfertigung.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__stripe" aria-hidden="true"></div>
+    </section>
+
+    <section id="leistungen" class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>Was wir sind & was wir machen</h2>
+          <p class="muted">Kurz, klar, übersichtlich — wie das Lager sein soll.</p>
+        </div>
+
+        <div class="grid3">
+          <article class="feature">
+            <div class="feature__icon">⏱️</div>
+            <h3>Zeitfenster-Management</h3>
+            <p>Disponenten buchen Slots, sehen Belegung und vermeiden Wartezeiten.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">🚚</div>
+            <h3>Rampe & Abfertigung</h3>
+            <p>Zuordnung nach Rampe und Bereich (Frische/Trocken/TK/Obst & Gemüse).</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">✅</div>
+            <h3>Regeln & Compliance</h3>
+            <p>Klare Slot-Regel: pünktlich ankommen, sonst keine Entladefreigabe.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="section section--alt">
+      <div class="container split">
+        <div>
+          <div class="section__head">
+            <h2>Kontakt</h2>
+            <p class="muted">Sag mir, welche Rampen, Öffnungszeiten und Felder du genau brauchst — ich passe es an.</p>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><div class="kpi__t">E-Mail</div><div class="kpi__v">contact@lagerscout.de</div></div>
+            <div class="kpi"><div class="kpi__t">Zeitfenster</div><div class="kpi__v">≈ 100 €</div></div>
+          </div>
+        </div>
+
+        <form class="card form" id="contactForm">
+          <div class="form__row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Dein Name" required />
+          </div>
+          <div class="form__row">
+            <label for="email">E-Mail</label>
+            <input id="email" name="email" type="email" placeholder="name@firma.de" required />
+          </div>
+          <div class="form__row">
+            <label for="msg">Nachricht</label>
+            <textarea id="msg" name="msg" rows="4" placeholder="Was soll am Website noch rein?" required></textarea>
+          </div>
+          <button class="btn btn--primary" type="submit">Senden (Demo)</button>
+          <p class="muted" id="formNote" style="margin:10px 0 0"></p>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <img src="assets/logo.png" alt="" class="footer__logo" />
+          <div>
+            <strong>LagerScout</strong><br/>
+            <span class="muted" style="font-size:13px">© <span id="year"></span> <span data-i18n="footer_rights">Alle Rechte vorbehalten.</span></span>
+          </div>
+        </div>
+        <div class="footer__links">
+          <a href="booking.html" data-i18n="nav_booking">Zeitfenster buchen</a>
+          <a href="#kontakt" data-i18n="nav_contact">Kontakt</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="common.js"></script>
+  <script>
+    // demo contact
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+    if(form && note){
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        note.textContent = (localStorage.getItem('lang')||'de')==='de'
+          ? 'Gesendet! (Demo) — später an E-Mail/Backend anschließen.'
+          : 'Sent! (demo) — connect to email/backend later.';
+        form.reset();
+      });
+    }
+  </script>
+</body>
+</html>
