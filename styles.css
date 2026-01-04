@@ -99,3 +99,28 @@ input:focus,select:focus,textarea:focus{border-color:rgba(216,0,0,.35);box-shado
   .nav__menu.is-open{display:flex}
   .nav__link{padding:10px 10px}
 }
+/* HERO GIF BACKGROUND */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-gif {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-gif img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.45);
+}
+
+/* text peste gif */
+.hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
